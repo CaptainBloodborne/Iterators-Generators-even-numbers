@@ -26,7 +26,7 @@ def get_even_for_loop_iterator(values: List) -> Generator:
     :param values: input list of lists with values
     :return: generator with int values
     """
-    return (
+    yield from (
         value
         for outer_list in values
         for inner_list in outer_list
