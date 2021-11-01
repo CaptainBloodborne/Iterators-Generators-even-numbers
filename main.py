@@ -1,5 +1,4 @@
-from typing import Generator
-from typing import List
+from typing import Generator, List
 
 VALUES = [
     [[10, 11, 12], [13, 14, 15], [16, 17, 18]],
@@ -13,15 +12,27 @@ def get_even_for_loop(values: List) -> List[int]:
     :param values: input list of lists with values
     :return: list with int values
     """
-    raise NotImplementedError("Implement me!")
+    even_list = []
+    for outer_list in values:
+        for inner_list in outer_list:
+            for value in inner_list:
+                if value % 2 == 0:
+                    even_list.append(value)
+    return even_list
 
 
 def get_even_for_loop_iterator(values: List) -> Generator:
-    """Return all even numbers using classical "for" loop.
+    """Return all even numbers using generator.
     :param values: input list of lists with values
     :return: generator with int values
     """
-    raise NotImplementedError("Implement me!")
+    return (
+        value
+        for outer_list in values
+        for inner_list in outer_list
+        for value in inner_list
+        if value % 2 == 0
+    )
 
 
 def get_even_list_comprehension(values: List) -> List[int]:
@@ -29,4 +40,11 @@ def get_even_list_comprehension(values: List) -> List[int]:
     :param values: input list of lists with values
     :return: list with int values
     """
-    raise NotImplementedError("Implement me!")
+
+    return [
+        value
+        for outer_list in values
+        for inner_list in outer_list
+        for value in inner_list
+        if value % 2 == 0
+    ]
